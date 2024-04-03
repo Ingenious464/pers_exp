@@ -4,17 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Expense Tracker</h1>
-    <form action="/add_expense" method="POST">
-        <input type="text" name="expense" placeholder="Enter expense">
-        <button type="submit">Add Expense</button>
-    </form>
-    <ul>
-        {% for expense in expenses %}
-            <li>{{ expense }} <form action="/delete_expense/{{ loop.index0 }}" method="POST"><button type="submit">Delete</button></form></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <form action="/add_expense" method="POST">
+            <input type="text" name="expense" placeholder="Enter expense">
+            <button type="submit">Add Expense</button>
+        </form>
+        <ul>
+            {% for expense in expenses %}
+                <li>{{ expense }} <form action="/delete_expense/{{ loop.index0 }}" method="POST"><button type="submit" class="delete-button">Delete</button></form></li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
