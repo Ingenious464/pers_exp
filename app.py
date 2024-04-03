@@ -1,23 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
+from routes import register_routes
+from model import create_database
 
 app = Flask(__name__)
+app.secret_key = 'd0e60654c3e7d9a6469f62ede323cfcf' 
 
-expenses = []
-
-@app.route('/')
-def index():
-    return render_template('index.html', expenses=expenses)
-
-@app.route('/add_expense', methods=['POST'])
-def add_expense():
-    expense = request.form.get('expense')
-    expenses.append(expense)
-    return redirect('/')
-
-@app.route('/delete_expense/<int:index>', methods=['POST'])
-def delete_expense(index):
-    del expenses[index]
-    return redirect('/')
+# Register routes
+register_routes(app)
 
 if __name__ == '__main__':
+    create_database()  # Create the database and tables
     app.run(debug=True)
