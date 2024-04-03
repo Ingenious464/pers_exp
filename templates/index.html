@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <form action="/add_expense" method="POST">
+        <input type="text" name="expense" placeholder="Enter expense">
+        <button type="submit">Add Expense</button>
+    </form>
+    <ul>
+        {% for expense in expenses %}
+            <li>{{ expense }} <form action="/delete_expense/{{ loop.index0 }}" method="POST"><button type="submit">Delete</button></form></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
