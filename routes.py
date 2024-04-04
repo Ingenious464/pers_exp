@@ -1,6 +1,6 @@
+# routes.py
 from flask import render_template, request, redirect, session
 from flask import Flask
-
 import sqlite3
 
 # Function to register routes
@@ -14,7 +14,7 @@ def register_routes(app: Flask):
                 cursor = conn.cursor()
                 cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
                 conn.commit()
-            return redirect('/login')
+            return redirect('/login')  # Redirect to login page after registration
         return render_template('register.html')
 
     # Function to get user ID from session
@@ -48,7 +48,7 @@ def register_routes(app: Flask):
     def logout():
         session.pop('user_id', None)
         session.pop('username', None)
-        return redirect('/')
+        return redirect('/login')  # Redirect to login page after logout
 
     # Route to display expenses
     @app.route('/')

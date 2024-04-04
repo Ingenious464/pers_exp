@@ -84,8 +84,13 @@
         </form>
         <ul>
             {% for expense in expenses %}
-                <li>{{ expense }} <form action="/delete_expense/{{ loop.index0 }}" method="POST"><button type="submit" class="delete-button">Delete</button></form></li>
-            {% endfor %}
+    <li>{{ expense.category }} - {{ expense.amount }} - {{ expense.date }}
+        <form action="/delete_expense/{{ expense.id }}" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+{% endfor %}
+
         </ul>
     </div>
 </body>
